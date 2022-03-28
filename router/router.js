@@ -6,7 +6,7 @@ Vue.use(VueRouter)
 const routes= [
     {
         path:'/',
-        name:'Home',
+        name:'home',
         component:()=>import('../views/Home.vue'),
     },
     {
@@ -15,9 +15,19 @@ const routes= [
         component:()=>import('../views/Classtable.vue')
     },
     {
+        path:'/workline',
+        name:'workline',
+        component:()=>import('../views/Workline.vue')
+    },
+    {
+        path:'/navigation',
+        name:'navigation',
+        component:()=>import('../views/Navigation.vue')
+    },
+    {
         path:'/setting',
         name:'setting',
-        component:()=>import('../views/setting.vue')
+        component:()=>import('../views/Setting.vue')
     }
 ]
 

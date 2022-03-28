@@ -6,7 +6,7 @@
         <el-container>
             <el-header></el-header>
             <div>
-                <h1>setting</h1>
+                <h1>navigation</h1>
                 <p>{{msg}}</p>
             </div>
             <el-main>
@@ -19,12 +19,12 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 export default{
-    name:'SettingPage',
+    name:'NavigationPage',
     components:{
         CommonAside
     },
     data(){
-        return{msg:"setting here"}
+        return{msg:"navigation here"}
     }
 }
 </script>

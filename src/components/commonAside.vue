@@ -1,7 +1,7 @@
 <template>
-    <el-menu default-active="1-4-1" class="el-menu-vertical-demo" background-color="#545c64" text-color="#FFFFFF" active-text-color="#ffd04b" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+    <el-menu id="menu" :router="true" :default-active="this.$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#FFFFFF" active-text-color="#ffd04b"  @open="handleOpen" @close="handleClose" :collapse="isCollapse">
    <h3>学生日程管理中心</h3>
-   <el-menu-item @click="clickMenu(item)" index="1">
+   <el-menu-item @click="this.$router.push(home)" index="/">
     <i class="el-icon-s-home"></i>
     <span slot="title">首页</span>
   </el-menu-item>
@@ -10,14 +10,14 @@
       <i class="el-icon-date"></i>
       <span slot="title">课程</span>
     </template>
-      <el-menu-item @click="clickMenu(item)" index="1-1">课程表</el-menu-item>
-      <el-menu-item @click="clickMenu(item)" index="1-2">日程安排</el-menu-item>
+      <el-menu-item @click="this.$router.push(classtable)" index="/classtable">课程表</el-menu-item>
+      <el-menu-item @click="this.$router.push(workline)" index="/workline">日程安排</el-menu-item>
   </el-submenu>
-  <el-menu-item @click="clickMenu(item)" index="3" >
+  <el-menu-item @click="this.$router.push(navigation)" index="/navigation" >
     <i class="el-icon-location"></i>
     <span slot="title">校园导航</span>
   </el-menu-item>
-  <el-menu-item @click="clickMenu(item)" index="4">
+  <el-menu-item @click="this.$router.push(setting)" index="/setting">
     <i class="el-icon-setting"></i>
     <span slot="title">设置</span>
   </el-menu-item>
@@ -95,11 +95,6 @@
       },
       handleClose(key, keyPath) {
         console.log(key, keyPath);
-      },
-      clickMenu(item){
-        this.$router.push({
-          name:item.name
-        })
       }
     },
     computed:{
