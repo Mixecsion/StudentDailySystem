@@ -4,7 +4,9 @@
         <common-aside></common-aside>
     </el-aside>
         <el-container>
-            <el-header></el-header>
+            <el-header>
+                <common-header></common-header>
+            </el-header>
             <div>
                 <h1>classtable</h1>
                 <p>{{msg}}</p>
@@ -18,10 +20,12 @@
 
 <script>
 import CommonAside from '../src/components/commonAside.vue'
+import CommonHeader from '../src/components/commonHeader.vue'
 export default{
     name:'ClasstablePage',
     components:{
-        CommonAside
+        CommonAside,
+        CommonHeader
     },
     data(){
         return{msg:"classtable here"}
