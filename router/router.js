@@ -28,6 +28,11 @@ const routes= [
         path:'/setting',
         name:'setting',
         component:()=>import('../views/Setting.vue')
+    },
+    {
+        path:'/login',
+        name:'login',
+        component:()=>import('../views/Login.vue')
     }
 ]
 
