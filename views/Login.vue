@@ -15,6 +15,9 @@
 </div>
 </template>
 <script>
+
+
+
 export default{
     name:"LoginPage",
     data(){
@@ -46,7 +49,9 @@ export default{
         }
     },
     methods:{
-        login(){}
+        login(){
+            
+        }
     }
 }
 </script>

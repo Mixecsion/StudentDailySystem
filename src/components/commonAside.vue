@@ -1,5 +1,5 @@
 <template>
-    <el-menu id="menu" :router="true" :default-active="this.$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#FFFFFF" active-text-color="#ffd04b"  @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+    <el-menu id="menu" :router="true" :default-active="this.$route.path" class="el-menu-vertical-demo" background-color="#545c64" text-color="#FFFFFF" active-text-color="#80ffff"  @open="handleOpen" @close="handleClose" :collapse="isCollapse">
    <h3>学生日程管理中心</h3>
    <el-menu-item @click="this.$router.push(home)" index="/">
     <i class="el-icon-s-home"></i>
