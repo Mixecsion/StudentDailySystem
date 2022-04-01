@@ -110,6 +110,7 @@ export default{
 }
 .el-main{
     padding-top: 0;
+    background-color: rgb(227, 227, 227);
 }
 .class-table {
     .table-wrapper {
