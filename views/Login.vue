@@ -17,7 +17,6 @@
 <script>
 
 
-
 export default{
     name:"LoginPage",
     data(){
@@ -50,7 +49,7 @@ export default{
     },
     methods:{
         login(){
-            
+           
         }
     }
 }
