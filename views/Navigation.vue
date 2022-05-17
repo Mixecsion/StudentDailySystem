@@ -10,7 +10,13 @@
             </el-header>
             <el-main>
                 <body>
-                    <div id='container'></div>
+                    <el-row type="flex" class="row-bg">
+                        <div id="searchPart" style="z-index:3">
+                            <el-col :span="18"><el-input v-model="input" placeholder="请输入地点"></el-input></el-col>
+                            <el-col :span="6"><el-button icon="el-icon-search" circle></el-button></el-col>
+                        </div>
+                    </el-row>
+                    <div id='container' style="z-index:1"></div>
                 </body>
             </el-main>
         </el-container>
@@ -36,7 +42,8 @@ export default{
         }
     },
     mounted(){
-        this.initMap(this.center, this.zoom) 
+        this.initMap(this.center, this.zoom);
+        this.search = new window.TMap.service.Search({ pageSize: 10 });
     },
     methods:{
         initMap(center, zoom) {
@@ -440,6 +447,7 @@ export default{
         right: 0px;
         z-index: -1;
 }
+
 </style>
 
 
