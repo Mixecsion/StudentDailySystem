@@ -7,11 +7,6 @@
             <el-header>
                 <common-header></common-header>
             </el-header>
-            <div>
-                <h1>setting</h1>
-                <p>{{msg}}</p>
-            </div>
-            <time-setter></time-setter>
             <el-main>
             </el-main>
         </el-container>
@@ -21,19 +16,17 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
-
-
 export default{
-    name:'SettingPage',
+    name:'ContentPage',
     components:{
         CommonAside,
         CommonHeader
     },
     data(){
-        return{msg:'setting'}
-    },
-    methods:{
-       
+        return{
+            msg:"content here"
+        }
+        
     }
 }
 </script>
@@ -44,8 +37,9 @@ export default{
 }
 .el-main{
     padding-top: 0;
-    background-color: rgb(227, 227, 227);
+    background-color: rgb(234, 234, 234);
+}
+.userinfo{
+    background-color: rgb(255, 255, 255);
 }
 </style>
-
-

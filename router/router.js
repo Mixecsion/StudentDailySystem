@@ -33,6 +33,11 @@ const routes= [
         path:'/login',
         name:'login',
         component:()=>import('../views/Login.vue')
+    },
+    {
+        path:'/classtable/classcontent',
+        name:'classcontent',
+        component:()=>import('../views/ClassContent.vue')
     }
 ]
 

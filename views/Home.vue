@@ -1,5 +1,6 @@
 <template>
     <el-container style="height:100vh">
+    
     <el-aside width="auto">
         <common-aside></common-aside>
     </el-aside>
@@ -8,6 +9,7 @@
                 <common-header></common-header>
             </el-header>
             <el-main>
+                <time-setter></time-setter>
                 <el-row span="8" style="margin-top:20px" :gutter="20">
                     <el-col :span="8">
                         <el-card shadow="hover">
@@ -15,7 +17,7 @@
                             <p class="name">姓名：<span>李华</span></p>
                             <p class="number">学号: 2020211211</p>
                             <p class="college">学院：计算机学院（国家示范性软件学院）</p>
-                            <p class="college">班级：2020211301</p>
+                            <p class="college">班级: 2020211301</p>
                             <el-divider></el-divider>
                         </div>
                         </el-card>
@@ -81,11 +83,14 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
+import TimeSetter from '../src/components/timeSetter.vue'
+
 export default{
     name:'HomePage',
     components:{
         CommonAside,
-        CommonHeader
+        CommonHeader,
+        TimeSetter
     },
     data(){
         return{

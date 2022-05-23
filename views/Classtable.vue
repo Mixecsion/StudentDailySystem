@@ -24,7 +24,7 @@
                                             <p>{{'第' + digital2Chinese(lessonIndex+1) + "节"}}</p>
                                             <p class="period">{{ lesson }}</p>
                                         </td>
-                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" >
+                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="open()" >
                                             {{classTableData.courses[courseIndex][lessonIndex]|| '-'}}
                                         </td>
                                     </tr>
@@ -108,9 +108,9 @@ export default{
             console.log(arr);
             return arr
         },
-        /*open(arr) {
+        open(arr) {
             this.$alert('任课教师：'+arr.teacher +'</br>上课时间：'+arr.begin+'</br>课程材料:</br>考试时间：</br>作业：',arr.name,{dangerouslyUseHTMLString:true}, arr.name);
-        }*/
+        }
     }
 }
 </script>
