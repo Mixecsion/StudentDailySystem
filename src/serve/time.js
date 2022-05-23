@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 var x = new Date();
-var hour,minute,second,date,month,year;
+var hour,minute,second,date,month,year,week;
 year = x.getFullYear
 month = x.getMonth
 date = x.getDate
@@ -67,6 +67,7 @@ function timer(){
   //second = second*1 < 10 ? '0' + second*1 : second // 秒
   date = date*1 < 10 ? '0' + date*1 : date //日
   month = month*1 < 10 ? '0' + month*1 : month //月
+  week = new Date(year-month-date).getDay();
 
 }
 function pause(){
@@ -109,6 +110,7 @@ function forward(){
       //second = second*1 < 10 ? '0' + second*1 : second // 秒
       date = date*1 < 10 ? '0' + date*1 : date //日
       month = month*1 < 10 ? '0' + month*1 : month //月
+      week = new Date(year-month-date).getDay();
 }
 function back(){
     date = date-1;
@@ -147,4 +149,7 @@ function back(){
       //second = second*1 < 10 ? '0' + second*1 : second // 秒
       date = date*1 < 10 ? '0' + date*1 : date //日
       month = month*1 < 10 ? '0' + month*1 : month //月
+      week = new Date(year-month-date).getDay();
 }
+
+
