@@ -3,92 +3,112 @@
         {
             "name": "形式语言与自动机",
             "date": "Mon",
-            "begin-time": "8:00",
-            "end-time": "9:35",
+            "begin": "8:00",
+            "end": "9:35",
             "amount": 2,
             "teacher": "左兴权",
-            "location": "N511"
+            "location": "N511",
+            "DateIndex":1,
+            "ClassIndex":1
         },
         {
             "name": "毛泽东思想和中国特色社会主义理论体系概论",
             "date": "Mon",
-            "begin-time": "9:50",
-            "end-time": "11:25",
+            "begin": "9:50",
+            "end": "11:25",
             "amount": 2,
             "teacher": "宋林泽",
-            "location": "N307"
+            "location": "N307",
+            "DateIndex":1,
+            "ClassIndex":3
         },
         {
             "name": "计算机组成原理",
             "date": "Mon",
-            "begin-time": "13:00",
-            "end-time": "15:30",
+            "begin": "13:00",
+            "end": "15:30",
             "amount": 3,
             "teacher": "周峰",
-            "location": "N511"
+            "location": "N511",
+            "DateIndex":1,
+            "ClassIndex":6
         },
         {
             "name": "计算机网络",
             "date": "Tue",
-            "begin-time": "9:50",
-            "end-time": "11:25",
+            "begin": "9:50",
+            "end": "11:25",
             "amount": 2,
             "teacher": "蒋砚军",
-            "location": "S215"
+            "location": "S215",
+            "DateIndex":2,
+            "ClassIndex":3
         },
         {
             "name": "面向对象程序设计实践",
             "date": "Tue",
-            "begin-time": "13:00",
-            "end-time": "15:30",
+            "begin": "13:00",
+            "end": "15:30",
             "amount": 3,
             "teacher": "吴起凡",
-            "location": "N207"
+            "location": "N207",
+            "DateIndex":2,
+            "ClassIndex":6
         },
         {
             "name": "数据结构课程设计",
             "date": "Wed",
-            "begin-time": "8:00",
-            "end-time": "9:35",
+            "begin": "8:00",
+            "end": "9:35",
             "amount": 2,
             "teacher": "杨俊",
-            "location": "N206"
+            "location": "N206",
+            "DateIndex":3,
+            "ClassIndex":1
         },
         {
             "name": "毛泽东思想和中国特色社会主义理论体系概论",
             "date": "Wed",
-            "begin-time": "9:50",
-            "end-time": "11:25",
+            "begin": "9:50",
+            "end": "11:25",
             "amount": 2,
             "teacher": "宋林泽",
-            "location": "N309"
+            "location": "N309",
+            "DateIndex":3,
+            "ClassIndex":3
         },
         {
             "name": "计算机网络",
             "date": "Thu",
-            "begin-time": "9:50",
-            "end-time": "11:25",
+            "begin": "9:50",
+            "end": "11:25",
             "amount": 2,
             "teacher": "蒋砚军",
-            "location": "S215"
+            "location": "S215",
+            "DateIndex":4,
+            "ClassIndex":3
         },
         {
             "name": "体育基础（下）",
             "date": "Thu",
-            "begin-time": "13:00",
-            "end-time": "14:35",
+            "begin": "13:00",
+            "end": "14:35",
             "amount": 2,
             "teacher": "吴迪",
-            "location": "体育场"
+            "location": "体育场",
+            "DateIndex":4,
+            "ClassIndex":6
         },
         {
             "name": "形势与政策",
             "date": "Fri",
-            "begin-time": "13:00",
-            "end-time": "14:35",
+            "begin": "13:00",
+            "end": "14:35",
             "amount": 2,
             "teacher": "马院02",
-            "location": "N307"
+            "location": "N307",
+            "DateIndex":5,
+            "ClassIndex":6
         }
     ],
     "schedule": [

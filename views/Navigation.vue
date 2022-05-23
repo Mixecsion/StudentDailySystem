@@ -246,8 +246,25 @@ export default{
                 "properties": {
                     "title": "S3"
                 }
-            }
-            ],
+            },
+            {
+                "id": "22",   
+                "styleId": 'myStyle',  
+                // eslint-disable-next-line no-undef
+                "position": new TMap.LatLng(40.159217,116.288748),  //点标记坐标位置
+                "properties": {
+                    "title": "洗衣店"
+                }
+            },
+            {
+                "id": "23",   
+                "styleId": 'myStyle',  
+                // eslint-disable-next-line no-undef
+                "position": new TMap.LatLng(40.158848,116.290171),  //点标记坐标位置
+                "properties": {
+                    "title": "中国邮政"
+                }
+            }],
                 styles: {  // 点标记样式
                     "mystyle": new window.TMap.MarkerStyle({
                         "width": 20,
@@ -422,6 +439,20 @@ export default{
                 // eslint-disable-next-line no-undef
                 'position': new TMap.LatLng(40.157556,116.294216), //标注点位置
                 'content': 'S3', //标注文本
+            },
+            {
+                'id': 'label_22', //点图形数据的标志信息
+                'styleId': 'label', //样式id
+                // eslint-disable-next-line no-undef
+                'position': new TMap.LatLng(40.159217,116.288748), //标注点位置
+                'content': '洗衣店', //标注文本
+            },
+            {
+                'id': 'label_23', //点图形数据的标志信息
+                'styleId': 'label', //样式id
+                // eslint-disable-next-line no-undef
+                'position': new TMap.LatLng(40.158848,116.290171), //标注点位置
+                'content': '中国邮政', //标注文本
             }]
             });
         }

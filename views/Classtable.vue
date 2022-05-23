@@ -24,8 +24,8 @@
                                             <p>{{'第' + digital2Chinese(lessonIndex+1) + "节"}}</p>
                                             <p class="period">{{ lesson }}</p>
                                         </td>
-                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="open()">
-                                            {{classTableData.courses[courseIndex][lessonIndex] || '-'}}
+                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" >
+                                            {{classTableData.courses[courseIndex][lessonIndex]|| '-'}}
                                         </td>
                                     </tr>
                                 </tbody>
@@ -41,6 +41,8 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
+import ClassBox from '../src/data/db238.json'
+
 export default{
     name:'ClasstablePage',
     components:{
@@ -64,42 +66,51 @@ export default{
                     '17:25-18:10',
                     '18:30-19:15',
                     '19:20-20:05',
-                    '20:10-20:55',
+                    '20:10-20:55'
 
                 ],
                 courses: [
-                    ['', '', '', '', '', '', '', ''],
-                    ['形式语言与自动机', '形式语言与自动机', '毛泽东思想和中国特色社会主义理论体系概论', '毛泽东思想和中国特色社会主义理论体系概论', '', '计算机组成原理', '计算机组成原理', '计算机组成原理'],
-                    ['', '', '计算机网络', '计算机网络', '', '面向对象程序设计实践', '面向对象程序设计实践', '面向对象程序设计实践'],
-                    ['数据结构课程设计', '数据结构课程设计', '毛泽东思想和中国特色社会主义理论体系概论', '毛泽东思想和中国特色社会主义理论体系概论', '', '', '', ''],
-                    ['', '', '计算机网络', '计算机网络', '', '体育基础（下）', '体育基础（下）', ''],
-                    ['', '', '形势与政策', '形势与政策', '', '', '', ''],
-                    ['', '', '', '', '', '', '', ''],
-                ]
+                    this.PutInClass()[0],
+                    this.PutInClass()[1],
+                    this.PutInClass()[2],
+                    this.PutInClass()[3],
+                    this.PutInClass()[4],
+                    this.PutInClass()[5],
+                    this.PutInClass()[6]
+                ],
+
             }
         }
     },
-    created() {
-     /* mock随机数据*/
-        // Mock.mock({
-		//     lessons: ['08:00-09:00', '09:00-10:00', '10:00-11:00', '11:00-12:00', '13:00-14:00', '14:00-15:00', '15:00-16:00', '16:00-17:00'],
-		//     'courses|7': [['生物', '物理', '化学', '政治', '历史', '英语', '', '语文']]
-		// });
-    },
     methods: {
-        /**
-        * 数字转中文
-        * @param {Number} num 需要转换的数字
-        * @param {String} identifier 标识符
-        * @returns {String} 转换后的中文
-        */
         digital2Chinese(num, identifier) {
             const character = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十', '十一', '十二','十三','十四'];
             return identifier === 'week' && (num === 0 || num === 7) ? '日' : character[num];
         },
-            open() {
-                this.$alert('任课教师：左兴权</br>上课时间：8：00</br>课程材料：形式语言与自动机课本</br>考试时间：2022-6-1</br>作业：第五章习题',"形式语言与自动机",{dangerouslyUseHTMLString:true}, "形式语言与自动机");
+        PutInClass(){
+            let arr = [];
+            var flag=0;
+            var i1,i2;
+            for (i1 = 0; i1 < 7; i1++) {
+                arr[i1] = [];
+                for(i2 = 0; i2 < 14;i2++){
+                    flag = 0;
+                    for(var i3 = 0; i3 < ClassBox.class.length;i3++){
+                        if(ClassBox.class[i3].DateIndex==i1){
+                            if(((i2+1)>=ClassBox.class[i3].ClassIndex)&&((i2+1)<(ClassBox.class[i3].ClassIndex+ClassBox.class[i3].amount))&&(flag==0)){
+                                arr[i1][i2]=ClassBox.class[i3].name;
+                                flag=1;
+                            }
+                        }
+                    }
+                }
             }
+            console.log(arr);
+            return arr
+        },
+        /*open(arr) {
+            this.$alert('任课教师：'+arr.teacher +'</br>上课时间：'+arr.begin+'</br>课程材料:</br>考试时间：</br>作业：',arr.name,{dangerouslyUseHTMLString:true}, arr.name);
+        }*/
     }
 }
 </script>
