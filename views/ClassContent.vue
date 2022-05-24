@@ -11,21 +11,24 @@
             <el-main>
                 <el-row style="margin-top:20px">
                   <el-col :span="12">
-                      <el-page-header @back="this.$router.push(classtable)" content="详情页面"></el-page-header>
+                      <el-page-header @back=goBack() content="课程详情"></el-page-header>
                   </el-col>
                 </el-row>
-                <el-row style="margin-top:20px">
-                  <el-col :span="24">
-                    <el-descriptions title="用户信息">
-                        <el-descriptions-item label="用户名">kooriookami</el-descriptions-item>
-                        <el-descriptions-item label="手机号">18100000000</el-descriptions-item>
-                        <el-descriptions-item label="居住地">苏州市</el-descriptions-item>
-                        <el-descriptions-item label="备注">
-                        <el-tag size="small">学校</el-tag>
-                        </el-descriptions-item>
-                        <el-descriptions-item label="联系地址">江苏省苏州市吴中区吴中大道 1188 号</el-descriptions-item>
-                    </el-descriptions>
-                  </el-col>
+                <el-row style="margin-top:40px">
+                    <el-col :span="24">
+                        <el-card shadow="hover">
+                        <div class="info">
+                            <h2 class="name" >{{getname()}}</h2>
+                            <p class="number" style="margin-top:40px">{{"授课教师: "+searchteacher()}}</p>
+                            <p class="college">{{"上课日期: "+searchweekdate()}}</p>
+                            <p class="college">{{"上课时间: "+searchtime()}}</p>
+                            <p class="college">{{"上课地点: "+searchloca()}}</p>
+                            <p class="college">班级: 2020211301</p>
+                            <p class="college">班级: 2020211301</p>
+                            <el-divider></el-divider>
+                        </div>
+                        </el-card>
+                    </el-col>
                 </el-row>
                 <el-row style="margin-top:20px">
                   <el-col :span="24">
@@ -41,11 +44,11 @@
                         :on-exceed="handleExceed"
                         :file-list="fileList">
                         <h3>提交作业</h3>
+                        <p>{{"当期作业内容："}}</p>
                         <el-button size="small" type="primary" style="margin-top:20px">点击上传</el-button>
-                        <div slot="tip" class="el-upload__tip">不超过500kb</div>
+                        <div slot="tip" class="el-upload__tip">快点给我交作业</div>
                         </el-upload>
                       </el-card>
-                    
                   </el-col>
                 </el-row>
             </el-main>
@@ -56,7 +59,7 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
-import ClassBox from '../src/data/db238.json'
+import {searchclass} from '../src/serve/searchclass.js'
 
 export default{
     name:'ContentPage',
@@ -66,33 +69,69 @@ export default{
     },
     data(){
         return{
-            back:{
-                path:'/',
-                name:'classtable',
-                label:'课程表',
-                icon:'date',
-                url:'Class/Classtable'
-              },
-              fileList: []
+            classname :this.getname(),
+            fileList: [],
+ 
         }
         
     },
     methods: {
-      goBack() {
-        console.log('go back');
-      },
-      handleRemove(file, fileList) {
-        console.log(file, fileList);
-      },
-      handlePreview(file) {
-        console.log(file);
-      },
-      handleExceed(files, fileList) {
-        this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
-      },
-      beforeRemove(file) {
-        return this.$confirm(`确定移除 ${ file.name }?`);
-      }
+        getname(){
+            var id=this.$route.params.name;
+            return id;
+        },
+        goBack() {
+            this.$router.push({name:'classtable'});
+            console.log('go back');
+        },
+        handleRemove(file, fileList) {
+            console.log(file, fileList);
+        },
+        handlePreview(file) {
+            console.log(file);
+        },
+        handleExceed(files, fileList) {
+            this.$message.warning(`当前限制选择 3 个文件，本次选择了 ${files.length} 个文件，共选择了 ${files.length + fileList.length} 个文件`);
+        },
+        beforeRemove(file) {
+            return this.$confirm(`确定移除 ${ file.name }?`);
+        },
+        searchteacher(){
+            var name = this.getname();
+            if(searchclass(name)!=-1){
+                return searchclass(name).teacher;
+            }
+            else{
+                return -1;
+            }
+        },
+        searchweekdate(){
+            var name = this.getname();
+            if(searchclass(name)!=-1){
+                return searchclass(name).date;
+            }
+            else{
+                return -1;
+            }
+        },
+        searchtime(){
+            var name = this.getname();
+            if(searchclass(name)!=-1){
+                return searchclass(name).begin;
+            }
+            else{
+                return -1;
+            }
+        },
+        searchloca(){
+            var name = this.getname();
+            if(searchclass(name)!=-1){
+                return searchclass(name).location;
+            }
+            else{
+                return -1;
+            }
+        }
     }
 }
 </script>

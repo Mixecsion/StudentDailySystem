@@ -26,9 +26,9 @@
                         <el-card shadow="hover">
                         <div class="userinfo">
                             <p>课程查询：</p>
-                            <el-input v-model="input" placeholder="请输入课程名称"></el-input>
+                            <el-input v-model="search.content" placeholder="请输入课程名称"></el-input>
                             <el-divider></el-divider>
-                            <el-button type="primary" round>查询</el-button>
+                            <el-button type="primary" round @click="onClick1(search.content)">查询</el-button>
                         </div>
                         </el-card>
                     </el-col> 
@@ -95,9 +95,17 @@ export default{
     data(){
         return{
             msg:"home here",
-            timeImg: require('../src/assets/time.png')
+            timeImg: require('../src/assets/time.png'),
+            search:{
+                content:''
+            }
         }
         
+    },
+    methods:{
+        onClick1(name){
+            this.$router.push({name:'classcontent',params:{name:name}});
+        }
     }
 }
 </script>

@@ -24,7 +24,7 @@
                                             <p>{{'第' + digital2Chinese(lessonIndex+1) + "节"}}</p>
                                             <p class="period">{{ lesson }}</p>
                                         </td>
-                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="onclick()" >
+                                        <td v-for="(course, courseIndex) in classTableData.courses" :key="courseIndex" @click="onclick(classTableData.courses[courseIndex][lessonIndex])" >
                                             {{classTableData.courses[courseIndex][lessonIndex]|| '-'}}
                                         </td>
                                     </tr>
@@ -108,8 +108,8 @@ export default{
             console.log(arr);
             return arr
         },
-        onclick(arr) {
-            this.$alert('任课教师：'+arr.teacher +'</br>上课时间：'+arr.begin+'</br>课程材料:</br>考试时间：</br>作业：',arr.name,{dangerouslyUseHTMLString:true}, arr.name);
+        onclick(name) {
+            this.$router.push({name:'classcontent',params:{name:name}});
         }
     }
 }
