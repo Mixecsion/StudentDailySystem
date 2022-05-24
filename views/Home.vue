@@ -84,6 +84,7 @@
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import TimeSetter from '../src/components/timeSetter.vue'
+import {searchclass} from '../src/serve/searchclass.js'
 
 export default{
     name:'HomePage',
@@ -104,7 +105,12 @@ export default{
     },
     methods:{
         onClick1(name){
-            this.$router.push({name:'classcontent',params:{name:name}});
+            if(searchclass(name)!=-1){
+                this.$router.push({name:'classcontent',params:{name:name}});
+            }
+            else{
+                this.$alert('您搜索的课程不在您的课表内，请重新搜索', '搜索失败');
+            }
         }
     }
 }
