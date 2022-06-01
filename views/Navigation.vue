@@ -7,6 +7,7 @@
         <el-container>
             <el-header>
                 <common-header></common-header>
+                <time-setter></time-setter>
             </el-header>
             <el-main>
                 <body>
@@ -26,11 +27,14 @@
 <script>
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
+import TimeSetter from '../src/components/timeSetter.vue'
+
 export default{
     name:'NavigationPage',
     components:{
         CommonAside,
-        CommonHeader
+        CommonHeader,
+        TimeSetter
     },
     data(){
         return{

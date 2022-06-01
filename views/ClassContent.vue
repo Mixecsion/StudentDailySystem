@@ -7,6 +7,7 @@
         <el-container>
             <el-header>
                 <common-header></common-header>
+                <time-setter></time-setter>
             </el-header>
             <el-main>
                 <el-row style="margin-top:20px">
@@ -60,12 +61,14 @@
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import {searchclass} from '../src/serve/searchclass.js'
+import TimeSetter from '../src/components/timeSetter.vue'
 
 export default{
     name:'ContentPage',
     components:{
         CommonAside,
-        CommonHeader
+        CommonHeader,
+        TimeSetter
     },
     data(){
         return{

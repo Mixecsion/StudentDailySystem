@@ -1,16 +1,16 @@
 <template>
     <el-container style="height:100vh">
-    
     <el-aside width="auto">
+
         <common-aside></common-aside>
     </el-aside>
         <el-container>
             <el-header>
                 <common-header></common-header>
+                <time-setter></time-setter>
             </el-header>
             <el-main>
-                <time-setter></time-setter>
-                <el-row span="8" style="margin-top:20px" :gutter="20">
+                <el-row span="8" style="margin-top:20px" :gutter="20" z-index:2>
                     <el-col :span="8">
                         <el-card shadow="hover">
                         <div class="userinfo">
@@ -45,7 +45,7 @@
                         <el-card shadow="hover">
                         <div class="userinfo">
                             <p>当前课程：</p>
-                            <p>形式语言与自动机</p>
+                            <p>{{}}</p>
                             <p>上课时间：8：00</p>
                             <p>上课地点：N511</p>
                             <el-row><el-button type="primary" round>导航</el-button><el-button type="success" round>详细信息</el-button></el-row>
@@ -59,7 +59,7 @@
                             <p>计算机组成原理</p>
                             <p>第五章练习题</p>
                             <p>截止日期：5-4</p>
-                            <el-button type="warning" round>交作业</el-button>
+                            <el-button type="warning" round @click="onClick1(search.content)">交作业</el-button>
                         </div>
                         </el-card>
                     </el-col>
@@ -85,6 +85,8 @@ import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import TimeSetter from '../src/components/timeSetter.vue'
 import {searchclass} from '../src/serve/searchclass.js'
+import ClassBox from '../src/data/db238.json'
+import {GetNowTime} from '../src/components/timeSetter.vue'
 
 export default{
     name:'HomePage',
@@ -99,7 +101,8 @@ export default{
             timeImg: require('../src/assets/time.png'),
             search:{
                 content:''
-            }
+            },
+            
         }
         
     },
@@ -111,6 +114,22 @@ export default{
             else{
                 this.$alert('您搜索的课程不在您的课表内，请重新搜索', '搜索失败');
             }
+        },
+        classremind(){
+            var flag=0;
+            var weekday=GetNowTime()[5]
+            var endTimeHour = GetNowTime()[3]
+            for(var i=0;i<ClassBox.class.length;i++){
+                if(weekday==ClassBox.class[i].date){
+                    if(endTimeHour<ClassBox.class[i].endtimeHour){
+                        if(flag==0){
+                            flag=1;
+                            return ClassBox.class[i];
+                        }
+                    }
+                }
+            }
+            return -1;
         }
     }
 }

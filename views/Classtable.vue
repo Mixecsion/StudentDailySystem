@@ -6,6 +6,7 @@
         <el-container>
             <el-header>
                 <common-header></common-header>
+                <time-setter></time-setter>
             </el-header>
             <el-main>
                 <div class="class-table">
@@ -42,12 +43,14 @@
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import ClassBox from '../src/data/db238.json'
+import TimeSetter from '../src/components/timeSetter.vue'
 
 export default{
     name:'ClasstablePage',
     components:{
         CommonAside,
-        CommonHeader
+        CommonHeader,
+        TimeSetter
     },
     data(){
         return{

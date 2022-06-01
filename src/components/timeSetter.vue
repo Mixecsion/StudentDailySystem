@@ -1,125 +1,112 @@
+
 <template>
-  <div>
-    <div>
-      <!-- 悬浮球 -->
-      <div
-        ref="breathing_lamp"
-        class="breathing_lamp"
-        @click="show3 = !show3"
-        @touchstart.stop="handleTouchStart"
-        @touchmove.prevent.stop="handleTouchMove($event)"
-        @touchend.stop="handleTouchEnd"
-        :style="{left: left + 'px',top: top + 'px',width: itemWidth + 'px',height: itemHeight + 'px'}"
-        v-text="text"
-        v-if="isShow"
-      ></div>
-      <div id="buttonComBination" v-show="show3" class="collapseTransiton">
-        <el-collapse-transition>
-          <div class="transitionBoxs" :style="{left: left - 20+  'px', top: top + 30+ 'px'}">
-            <div class="transition-box">返回</div>
-            <div class="transition-box">编辑</div>
-            <div class="transition-box">下一步</div>
-          </div>
-        </el-collapse-transition>
-        <!-- <buttonComBination></buttonComBination> -->
-      </div>
+    <div class="home" id="home"> 
+        <div :class="{'hand':true,'fold':true,'fode2-choose':foldClass}"  @click="show" @mouseover="mouseOver" @mouseleave="leave"><i :class="icon"></i></div>
+        <transition name="el-zoom-in-top">
+            <div v-show="icon!='el-icon-arrow-up'" class="transition-box">
+              <el-row style="margin-top:50px">
+                <el-col :span="24">
+                  <h2>TimeMachine</h2>
+                  <p>{{GetNowTime()[0]+"年"+GetNowTime()[1]+"月"+GetNowTime()[2]+"日"+GetNowTime()[3]+"点"+GetNowTime()[4]+"分"+"   "+GetNowTime()[5]}}</p>
+                </el-col>
+              </el-row>
+            </div>
+        </transition>
     </div>
-  </div>
 </template>
-
-
+ 
 <script>
-export default {
-  props: {
-    // 球名字默认：“球”
-    text: {
-      type: String,
-      default: "ball",
-    }, // 球宽度默认：“40”
-    itemWidth: {
-      type: Number,
-      default: 50,
-    }, // 球高度默认：“40”
-    itemHeight: {
-      type: Number,
-      default: 50,
-    },
-  },
-  data() {
-    return {
-      left: 0, // 距离左边距离
-      top: 0, // 距离抬头距离
-      startToMove: false, // 开始移动时候不显示
-      isShow: true, // 组件是否显示
-      timer: null, // 定时器
-      currentTop: null, // 获取当前页面的滚动条纵坐标位置
-      clientW: document.documentElement.clientWidth, //视口宽
-      clientH: document.documentElement.clientHeight, //视口高
-    };
-  },
-  created() {
-    // 初始化定义距离四周距离
-    this.left = this.clientW - this.itemWidth - 30;
-    this.top = this.clientH / 2 - this.itemHeight / 2;
-  },
+import {start} from '../serve/time.js'
+import {timer} from '../serve/time.js'
+import {pause} from '../serve/time.js'
+import {date} from '../serve/time.js'
+import {hour} from '../serve/time.js'
+import {minute} from '../serve/time.js'
+import {month} from '../serve/time.js'
+import {year} from '../serve/time.js'
+import {week} from '../serve/time.js'
 
-  methods: {
-    // 点击小球事件
-    onclick() {
-      console.log("I am a small clouds");
-    }, // 开始移动方法
-
-    handleTouchStart() {
-      this.startToMove = true;
-      this.$refs.breathing_lamp.style.transition = "none";
-    }, // 移动中方法
-
-    handleTouchMove(e) {
-      const clientX = e.targetTouches[0].clientX; //手指相对视口的x
-      const clientY = e.targetTouches[0].clientY; //手指相对视口的y
-      const isInScreen =
-        clientX <= this.clientW &&
-        clientX >= 0 &&
-        clientY <= this.clientH &&
-        clientY >= 0;
-      if (this.startToMove && e.targetTouches.length === 1) {
-        if (isInScreen) {
-          this.left = clientX - this.itemWidth / 2;
-          this.top = clientY - this.itemHeight / 2;
+export default{
+    name:"TimeSetter",
+    data () {
+        return {
+            icon:'el-icon-arrow-up',
+            foldClass:false,
+            nowTime: null
         }
-      }
-    }, // 移动结束方法
-
-    handleTouchEnd() {
-      if (this.left < this.clientW / 2) {
-        this.left = 30; //不让贴边 所以设置30没设置0
-        this.handleIconY();
-      } else {
-        this.left = this.clientW - this.itemWidth - 30; //距边30px
-        this.handleIconY();
-      }
-      this.$refs.breathing_lamp.style.transition = "all .3s";
-    }, // 上下不贴边方法
-
-    handleIconY() {
-      if (this.top < 0) {
-        this.top = 30; //不上帖上边所以设置为30 没设置0
-      } else if (this.top + this.itemHeight > this.clientH) {
-        this.top = this.clientH - this.itemHeight - 30; //距边30px
-      }
     },
-  },
-};
-</script>
-<style>
-.breathing_lamp {
-  position: fixed;
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  background-color: orange;
-  line-height: 50px;
-  text-align: center;
-  color: #fff;
+    methods:{
+        show(){
+          this.icon=this.icon=='el-icon-arrow-up'?'el-icon-arrow-down':'el-icon-arrow-up'
+        },
+        mouseOver(){
+          this.foldClass=true
+        },
+        leave(){
+          this.foldClass=false
+        },
+        GetNowTime(){
+          start()
+          timer()
+          var timebox = new Array(6)
+          timebox[0]=year
+          timebox[1]=month
+          timebox[2]=date
+          timebox[3]=hour
+          timebox[4]=minute
+          timebox[5]=week
+          return timebox;
+        },
+        StartTime(){
+          start()
+        },
+        StopTime(){
+          pause()
+        }
+    }
 }
+</script>
+<style scoped>
+#home{
+    width:100% ;
+    height: 100%;
+}
+#cesiumContainer{
+    position: relative;
+}
+#home >>> .fold{
+    height: 18px;
+    width: 40px;
+    background-color: rgba(90,90,90,.85);
+    position: absolute;
+    top:-18px;
+    left: 50%;
+    z-index: 9999;
+    border: 1px solid #DCDFE6;
+    border-radius: 3px;
+    border-color: #909399;
+    color: #fff;
+    text-align: center;
+    line-height: 18px;
+    font-size: 12px;
+}
+#home >>> .fold:hover {
+    border-color: #a6a9ad;
+}
+#home >>> .fode2-choose{
+    top:0;
+}
+</style>
+<style>
+  .transition-box {
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .8);
+    text-align: center;
+    color: #fff;
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 999;
+  }
 </style>
