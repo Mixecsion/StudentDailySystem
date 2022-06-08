@@ -2,7 +2,7 @@
 var x = new Date();
 var hour,minute,date,month,year,week;
 year = x.getFullYear()
-month = x.getMonth()
+month = x.getMonth()+1
 date = x.getDate()
 hour = x.getHours()
 minute = x.getMinutes()
@@ -84,7 +84,7 @@ function pause(){
     clearInterval(ini);
 }
 function forward(){
-    date = date+1;
+    hour = hour+1;
     
       switch(month){
           case 1: case 3: case 5: case 7: case 8: case 10: case 12:{
@@ -132,7 +132,7 @@ function forward(){
           week="Sun"
 }
 function back(){
-    date = date-1;
+    hour = hour-1;
     
       switch(month){
           case 2: case 4: case 6: case 8: case 9: case 11: case 1:{

@@ -1,4 +1,3 @@
-
 <template>
     <div class="home" id="home"> 
         <div :class="{'hand':true,'fold':true,'fode2-choose':foldClass}"  @click="show" @mouseover="mouseOver" @mouseleave="leave"><i :class="icon"></i></div>
@@ -8,6 +7,12 @@
                 <el-col :span="24">
                   <h2>TimeMachine</h2>
                   <p>{{GetNowTime()[0]+"年"+GetNowTime()[1]+"月"+GetNowTime()[2]+"日"+GetNowTime()[3]+"点"+GetNowTime()[4]+"分"+"   "+GetNowTime()[5]}}</p>
+                  <el-button icon="el-icon-caret-left" circle @click="backTime()"></el-button>
+                  <el-button icon="el-icon-video-pause" circle @click="pauseTime()"></el-button>
+                  <el-button icon="el-icon-video-play" circle @click="startTime()"></el-button>
+                  <el-button icon="el-icon-caret-right" circle @click="forwardTime()"></el-button>
+                  <h2>-</h2>
+                  <h2>日志</h2>
                 </el-col>
               </el-row>
             </div>
@@ -16,15 +21,17 @@
 </template>
  
 <script>
-import {start} from '../serve/time.js'
-import {timer} from '../serve/time.js'
-import {pause} from '../serve/time.js'
 import {date} from '../serve/time.js'
 import {hour} from '../serve/time.js'
 import {minute} from '../serve/time.js'
 import {month} from '../serve/time.js'
 import {year} from '../serve/time.js'
 import {week} from '../serve/time.js'
+import {pause} from '../serve/time.js'
+import {start} from '../serve/time.js'
+import {forward} from '../serve/time.js'
+import {back} from '../serve/time.js'
+
 
 export default{
     name:"TimeSetter",
@@ -46,8 +53,6 @@ export default{
           this.foldClass=false
         },
         GetNowTime(){
-          start()
-          timer()
           var timebox = new Array(6)
           timebox[0]=year
           timebox[1]=month
@@ -57,11 +62,17 @@ export default{
           timebox[5]=week
           return timebox;
         },
-        StartTime(){
-          start()
+        pauseTime(){
+          pause();
         },
-        StopTime(){
-          pause()
+        startTime(){
+           start();
+        },
+        forwardTime(){
+           forward();
+        },
+        backTime(){
+           back();
         }
     }
 }

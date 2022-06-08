@@ -84,7 +84,7 @@ export default{
             return id;
         },
         goBack() {
-            this.$router.push({name:'classtable'});
+            this.$router.go(-1)
             console.log('go back');
         },
         handleRemove(file, fileList) {

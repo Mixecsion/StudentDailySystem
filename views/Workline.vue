@@ -9,49 +9,60 @@
                 <time-setter></time-setter>
             </el-header>
             <el-main>
+                <el-dialog title="添加日程" :visible.sync="dialogFormVisible">
+                        <el-form :model="form">
+                                <el-form-item label="日程名称" :label-width="formLabelWidth">
+                                    <el-input v-model="form.name" autocomplete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item label="具体内容" :label-width="formLabelWidth">
+                                    <el-input v-model="form.content" autocomplete="off"></el-input>
+                                </el-form-item>
+                                <el-form-item label="执行日期" :label-width="formLabelWidth">
+                                    <el-date-picker v-model="form.date"  type="date" placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
+                                </el-form-item>
+                                <el-form-item label="起始时间" :label-width="formLabelWidth">
+                                    <el-time-picker
+                                    v-model="form.start"
+                                    :picker-options="{
+                                    selectableRange: '00:00 - 23:59'
+                                    }"
+                                    placeholder="起始时间">
+                                </el-time-picker>
+                                </el-form-item>
+                                <el-form-item label="结束时间" :label-width="formLabelWidth">
+                                    <el-time-picker
+                                        arrow-control
+                                        v-model="form.end"
+                                        :picker-options="{
+                                        selectableRange: '00:00 - 23:59'
+                                        }"
+                                        placeholder="结束时间">
+                                    </el-time-picker>
+                                </el-form-item>
+                                <el-form-item label="重复" :label-width="formLabelWidth">
+                                    <el-radio v-model="form.repeat" label="1">无</el-radio>
+                                    <el-radio v-model="form.repeat" label="2">每周</el-radio>
+                                </el-form-item> 
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                                <el-button @click="dialogFormVisible = false">取 消</el-button>
+                                <el-button type="primary" @click="Add()">确 定</el-button>
+                        </div>
+                </el-dialog>
                 <div class="tool">
-                    <el-button class="add" type="primary" icon="el-icon-plus" circle></el-button>
-                    <el-date-picker v-model="value2" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
+                    <el-button class="add" type="primary" icon="el-icon-plus" circle  @click="dialogFormVisible=true"></el-button>
+                    <el-date-picker v-model="value" align="right" type="date" placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
                 </div>
                 <div class="block">
                     <el-timeline>
-                        <el-timeline-item timestamp="2022/5/10    13:00" placement="top">
+                        <el-timeline-item 
+                        v-for="(schedule, index) in schedules"
+                        :key="index"
+                        :timestamp="schedule.time" placement="top">
                         <el-card>
-                            <h4>大班班会</h4>
-                            <p>地点：学活301</p>
-                        </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2022/5/10    16:00" placement="top">
-                        <el-card>
-                            <h4>计算机网络作业：第五章习题</h4>
-                            <p>爱课堂</p>
-                            <div><el-button type="primary" round>交作业</el-button></div>
-                        </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2022/5/10    23:59" placement="top">
-                        <el-card>
-                            <h4>java练习：第三章 5题</h4>
-                            <p>hustoj</p>
-                            <div><el-button type="primary" round>交作业</el-button></div>
-                        </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2022/7/2    23:59" placement="top">
-                        <el-card>
-                            <h4>计算机网络作业</h4>
-                            <p>爱课堂</p>
-                            <div><el-button type="primary" round>交作业</el-button></div>
-                        </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2022/4/2    13:00" placement="top">
-                        <el-card>
-                            <h4>更新 Github 模板</h4>
-                            <p>王小虎 提交于 2018/4/2 20:46</p>
-                        </el-card>
-                        </el-timeline-item>
-                        <el-timeline-item timestamp="2022/4/2    13:00" placement="top">
-                        <el-card>
-                            <h4>更新 Github 模板</h4>
-                            <p>王小虎 提交于 2018/4/2 20:46</p>
+                            <h4>{{schedule.name}}</h4>
+                            <p>{{schedule.content}}</p>
+                            <p>{{}}</p>
                         </el-card>
                         </el-timeline-item>
                     </el-timeline>
@@ -65,6 +76,7 @@
 import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import TimeSetter from '../src/components/timeSetter.vue'
+import ClassBox from '../src/data/db238.json'
 
 export default{
     name:'worklinePage',
@@ -75,19 +87,57 @@ export default{
     },
     data(){
         return{
-             pickerOptions: {
-          disabledDate(time) {
-            return time.getTime() < Date.now();
-          },
-          shortcuts: [{
-            text: '今天',
-            onClick(picker) {
-              picker.$emit('pick', new Date());
+            pickerOptions: {
+                disabledDate(time) {
+                    return time.getTime() < Date.now();
+                },
+                shortcuts: [{
+                    text: '今天',
+                    onClick(picker) {
+                    picker.$emit('pick', new Date());
+                    }
+                }]
+            },
+            value: '2022-6-20',
+            schedules:ClassBox.schedule,
+            dialogFormVisible: false,
+            form: {
+                name: '',
+                content:'',
+                date:'',
+                start:new Date(),
+                end:new Date(),
+                repeat:''
+            },
+            formLabelWidth: '120px',
+        }  
+    },
+    methods:{
+        chooseDate(){
+            let arr = [];
+            var i,j=0;
+            for(i = 0; i < ClassBox.class.length;i++){
+                var day=new Date(Date.parse(ClassBox.schedule[i].date));
+                if((this.value).equals(day)){
+                    arr[j]=ClassBox.schedule[i];
+                    j++;
+                }
             }
-          }]
+            return arr;
         },
-        value1: '',
-        value2: '',
+        checkClass(){
+            return 1;
+        },
+        checkSchedule(){
+            return 1;
+        },
+        Add(){
+            this.dialogFormVisible = false
+            this.$notify({
+                title: '添加成功',
+                message: '日程已成功添加',
+                type: 'success'
+            });
         }
     }
 }

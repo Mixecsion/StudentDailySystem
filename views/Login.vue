@@ -9,7 +9,7 @@
           <el-input type="password" v-model="form.password" auto-complete="off" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item class="login-submit">
-          <el-button type="primary" @click="login" class="login-submit">登录</el-button>
+          <el-button type="primary" class="login-submit"  @click="this.$router.push({name:'HomePage'});" index="/">登录</el-button>
       </el-form-item>
     </el-form>
 </div>
@@ -21,6 +21,7 @@ export default{
     name:"LoginPage",
     data(){
         return{
+           
             form:{
 
             },
@@ -48,9 +49,7 @@ export default{
         }
     },
     methods:{
-        login(){
-           
-        }
+       
     }
 }
 </script>
