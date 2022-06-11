@@ -1,7 +1,6 @@
 <template>
     <el-container style="height:100vh">
     <el-aside width="auto">
-
         <common-aside></common-aside>
     </el-aside>
         <el-container>
@@ -24,7 +23,7 @@
                     </el-col> 
                     <el-col :span="8">
                         <el-card shadow="hover">
-                        <div class="userinfo">
+                        <div class="searchclass" v-if="minute">
                             <p>课程查询：</p>
                             <el-input v-model="search.content" placeholder="请输入课程名称"></el-input>
                             <el-divider></el-divider>
@@ -34,7 +33,7 @@
                     </el-col> 
                     <el-col :span="7">
                         <el-card shadow="hover">
-                        <div class="userinfo">
+                        <div class="timeimg">
                             <img class="time" :src="timeImg">
                         </div>
                         </el-card>
@@ -43,7 +42,7 @@
                 <el-row span="8" style="margin-top:20px" :gutter="20">
                     <el-col :span="6">
                         <el-card shadow="hover">
-                        <div class="userinfo">
+                        <div class="classinfo" v-if="minute">
                             <p>当前课程：</p>
                             <p>{{this.classremind().name}}</p>
                             <p>上课时间：{{this.classremind().begin}}</p>
@@ -55,7 +54,7 @@
                     </el-col> 
                     <el-col :span="6">
                         <el-card shadow="hover">
-                        <div class="userinfo">
+                        <div class="homeworkinfo" v-if="minute">
                             <p>未交作业：</p>
                             <p>{{this.homeworkremind().name}}</p>
                             <p>{{this.homeworkremind().homework}}</p>
@@ -66,7 +65,7 @@
                     </el-col>
                     <el-col :span="6">
                         <el-card shadow="hover">
-                        <div class="userinfo">
+                        <div class="scheinfo">
                             <p>当前日程：</p>
                             <p>大班班会</p>
                             <p>时间：13：00</p>
@@ -93,6 +92,8 @@ import {minute} from '../src/serve/time.js'
 import {month} from '../src/serve/time.js'
 import {year} from '../src/serve/time.js'
 import {week} from '../src/serve/time.js'
+import {storelog1} from '../src/store/log.js'
+
 
 export default{
     name:'HomePage',
@@ -119,6 +120,7 @@ export default{
         onClick1(name){
             if(searchclass(name)!=-1){
                 this.$router.push({name:'classcontent',params:{name:name}});
+                storelog1(name)
             }
             else{
                 this.$alert('您搜索的课程不在您的课表内，请重新搜索', '搜索失败');

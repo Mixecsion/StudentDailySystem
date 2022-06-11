@@ -9,7 +9,7 @@
           <el-input type="password" v-model="form.password" auto-complete="off" placeholder="请输入密码"></el-input>
       </el-form-item>
       <el-form-item class="login-submit">
-          <el-button type="primary" class="login-submit"  @click="this.$router.push({name:'HomePage'});" index="/">登录</el-button>
+          <el-button type="primary" class="login-submit"  @click="Go()" >登录</el-button>
       </el-form-item>
     </el-form>
 </div>
@@ -23,7 +23,8 @@ export default{
         return{
            
             form:{
-
+                username:'',
+                password:''
             },
             rules:{
                 username:[
@@ -49,7 +50,14 @@ export default{
         }
     },
     methods:{
-       
+       Go(){
+            if((this.form.username=='2020211211')&&(this.form.password=='12345678')){
+                this.$router.push('/');
+            }
+            else{
+                this.$alert('请重新输入', '账号或密码错误');
+            }
+       }
     }
 }
 </script>

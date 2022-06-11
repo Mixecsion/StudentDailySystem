@@ -13,6 +13,12 @@
                   <el-button icon="el-icon-caret-right" circle @click="forwardTime()"></el-button>
                   <h2>-</h2>
                   <h2>日志</h2>
+                  <p>只显示最近五条</p>
+                  <p>{{this.logcontent()}}</p>
+                  <p>{{this.log1}}</p>
+                  <p>{{this.log1}}</p>
+                  <p>{{this.log1}}</p>
+                  <p>{{this.log1}}</p>
                 </el-col>
               </el-row>
             </div>
@@ -39,7 +45,9 @@ export default{
         return {
             icon:'el-icon-arrow-up',
             foldClass:false,
-            nowTime: null
+            nowTime: null,
+            log1:Object.keys(this.logcontent())[0]
+           
         }
     },
     methods:{
@@ -72,7 +80,12 @@ export default{
            forward();
         },
         backTime(){
-           back();
+          back();
+        },
+        logcontent(){
+          var logcon=[]
+          logcon=(localStorage.getItem('logs'))
+          return logcon
         }
     }
 }

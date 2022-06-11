@@ -8,11 +8,12 @@ import {start} from './serve/time.js'
 import {timer} from './serve/time.js'
 
 
+
 Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(start)
 Vue.use(timer)
-
+localStorage.clear();
 
 new Vue({
   router,

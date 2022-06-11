@@ -18,8 +18,8 @@
     <span slot="title">校园导航</span>
   </el-menu-item>
   <el-menu-item @click="this.$router.push(setting)" index="/setting">
-    <i class="el-icon-setting"></i>
-    <span slot="title">设置</span>
+    <i class="el-icon-user-solid"></i>
+    <span slot="title">管理员</span>
   </el-menu-item>
 </el-menu>
 </template>

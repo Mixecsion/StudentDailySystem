@@ -38,6 +38,11 @@ const routes= [
         path:'/classtable/classcontent',
         name:'classcontent',
         component:()=>import('../views/ClassContent.vue')
+    },
+    {
+        path:'/setting/addnew',
+        name:'addnew',
+        component:()=>import('../views/Addnew.vue')
     }
 ]
 

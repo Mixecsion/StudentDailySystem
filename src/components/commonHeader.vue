@@ -6,7 +6,7 @@
                     <img class="user" :src="userImg">
                 </span>
                 <el-dropdown-menu slot="dropdown">
-                    <el-dropdown-item>退出</el-dropdown-item>
+                    <el-dropdown-item @click="this.$router.push('login');" index='/login'>退出</el-dropdown-item>
                 </el-dropdown-menu>
             </el-dropdown>
        </div>
@@ -20,6 +20,8 @@ export default{
         return{
             userImg: require('../assets/user.png')
         }
+    },
+    methods:{
     }
 }
 </script>
