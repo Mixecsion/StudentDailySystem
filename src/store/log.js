@@ -1,8 +1,8 @@
 var logs=[]
 
 function storelog1(log){
-    logs.push(log);
-    localStorage.setItem("logs", JSON.stringify(logs));
+    logs.push("用户查询课程："+log);
+    localStorage.setItem("logs", logs);
 }
 
 export{

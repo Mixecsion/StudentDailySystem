@@ -2,7 +2,7 @@
     <div class="home" id="home"> 
         <div :class="{'hand':true,'fold':true,'fode2-choose':foldClass}"  @click="show" @mouseover="mouseOver" @mouseleave="leave"><i :class="icon"></i></div>
         <transition name="el-zoom-in-top">
-            <div v-show="icon!='el-icon-arrow-up'" class="transition-box">
+            <div v-show="icon!='el-icon-arrow-up'" class="transition-box" id="box">
               <el-row style="margin-top:50px">
                 <el-col :span="24">
                   <h2>TimeMachine</h2>
@@ -13,12 +13,7 @@
                   <el-button icon="el-icon-caret-right" circle @click="forwardTime()"></el-button>
                   <h2>-</h2>
                   <h2>日志</h2>
-                  <p>只显示最近五条</p>
                   <p>{{this.logcontent()}}</p>
-                  <p>{{this.log1}}</p>
-                  <p>{{this.log1}}</p>
-                  <p>{{this.log1}}</p>
-                  <p>{{this.log1}}</p>
                 </el-col>
               </el-row>
             </div>
@@ -38,7 +33,6 @@ import {start} from '../serve/time.js'
 import {forward} from '../serve/time.js'
 import {back} from '../serve/time.js'
 
-
 export default{
     name:"TimeSetter",
     data () {
@@ -46,7 +40,7 @@ export default{
             icon:'el-icon-arrow-up',
             foldClass:false,
             nowTime: null,
-            log1:Object.keys(this.logcontent())[0]
+            log1:this.logcontent()
            
         }
     },
@@ -86,10 +80,13 @@ export default{
           var logcon=[]
           logcon=(localStorage.getItem('logs'))
           return logcon
-        }
+        },
+        
     }
 }
 </script>
+
+
 <style scoped>
 #home{
     width:100% ;
