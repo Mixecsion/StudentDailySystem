@@ -47,7 +47,7 @@
                                         <el-time-picker
                                         v-model="homework.time"
                                         :picker-options="{
-                                        selectableRange: '00:00 - 23:59'
+                                        
                                         }"
                                         placeholder="选择时间">
                                     </el-time-picker>
@@ -93,7 +93,6 @@
                                         <el-time-picker
                                         v-model="exam.time"
                                         :picker-options="{
-                                        selectableRange: '00:00 - 23:59'
                                         }"
                                         placeholder="选择时间">
                                     </el-time-picker>
@@ -209,6 +208,7 @@ export default{
     },
     sub(){
       this.$alert("您提交的资料已经成功上传", "提示");
+      this.pushData(this.zip)
     },
     handleRemove(file, fileList) {
       console.log(file, fileList);
@@ -236,14 +236,21 @@ export default{
     },
     onClick2(){
         this.$alert("您布置的作业已成功发布", "提示");
+        this.pushData(this.homework)
     },
     onClick3(){
         this.$alert("您的考试已成功发布", "提示");
+        this.pushData(this.exam)
     },
     goBack() {
       this.$router.go(-1);
       console.log("go back");
     },
+    // eslint-disable-next-line no-unused-vars
+    pushData(data){
+        //向后端数据库提交数据
+        return
+    }
     }
 }
 </script>

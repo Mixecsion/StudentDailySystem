@@ -18,13 +18,13 @@
                                     <el-input v-model="form.content" autocomplete="off"></el-input>
                                 </el-form-item>
                                 <el-form-item label="执行日期" :label-width="formLabelWidth">
-                                    <el-date-picker v-model="form.date"  type="date" placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
+                                    <el-date-picker v-model="form.date"  type="date" placeholder="选择日期" value-format="yyyy-MM-dd" :picker-options="pickerOptions"></el-date-picker>
                                 </el-form-item>
                                 <el-form-item label="起始时间" :label-width="formLabelWidth">
                                     <el-time-picker
                                     v-model="form.start"
+                                    value-format="HH:mm"
                                     :picker-options="{
-                                    selectableRange: '00:00 - 23:59'
                                     }"
                                     placeholder="起始时间">
                                 </el-time-picker>
@@ -33,8 +33,8 @@
                                     <el-time-picker
                                         arrow-control
                                         v-model="form.end"
+                                        value-format="HH:mm"
                                         :picker-options="{
-                                        selectableRange: '00:00 - 23:59'
                                         }"
                                         placeholder="结束时间">
                                     </el-time-picker>
@@ -74,6 +74,7 @@ import CommonAside from '../src/components/commonAside.vue'
 import CommonHeader from '../src/components/commonHeader.vue'
 import TimeSetter from '../src/components/timeSetter.vue'
 import ClassBox from '../src/data/db238.json'
+import { storelog3 } from "../src/store/log.js";
 
 export default{
     name:'worklinePage',
@@ -128,15 +129,33 @@ export default{
             return arr;
         },
         checkClass(){
-            
-            return 1;
+            var week = new Date(this.form.date).getDay();
+            if (week == 1) week = "Mon";
+            else if (week == 2) week = "Tue";
+            else if (week == 3) week = "Wed";
+            else if (week == 4) week = "Thu";
+            else if (week == 5) week = "Fri";
+            else if (week == 6) week = "Sat";
+            else if (week == 0) week = "Sun";
+                for (var i = 0; i < ClassBox.class.length; i++) {
+                    if (week == ClassBox.class[i].date) {
+                        return 1;
+                    }
+                }
+            return 0;
         },
         checkSchedule(){
-            return 1;
+            for (var i = 0; i < ClassBox.schedule.length; i++) {
+                    if (this.form.date == new Date(Date.parse(ClassBox.schedule[i].date))) {
+                        if((this.form.start < new Date(Date.parse(ClassBox.schedule[i].end)))&&(this.form.start > new Date(Date.parse(ClassBox.class[i].start)))){
+                            return 1;
+                        }
+                    }
+                }
+            return 0;
         },
         Add(){
             this.dialogFormVisible = false
-            
             let item={"name":this.form.name,
                         "time":"",
                         "date":this.form.date,
@@ -146,12 +165,35 @@ export default{
                         "repeat":this.form.repeat
                         };
             console.log(item);
-            this.$notify({
+            if(this.checkClass()==1){
+                this.$notify({
+                title: '添加失败',
+                message: '与现有的课程或日程冲突',
+                type: 'warning'
+                });
+            }
+            else{
+                this.$notify({
                 title: '添加成功',
                 message: '日程已成功添加',
                 type: 'success'
-            });
+                });
+            }
+            if(this.form.repeat==1){
+                for(var i=0;i<100;i++){
+                    this.pushData(this.form,this.form.date+7)
+                }
+            }
+            else{
+                this.pushData(this.form,this.form.date)
+            }
+            storelog3()
             return;
+        },
+        // eslint-disable-next-line no-unused-vars
+        pushData(data, date){
+            //上传同步数据到后端
+            return
         }
     }
 }
