@@ -31,7 +31,7 @@
             ><el-select
               style="width: 100%"
               v-model="formData.currentMode"
-              placeholder="请选择出行方式"
+              placeholder="请选择计算方式"
             >
               <el-option
                 v-for="item in formData.tripMode"
@@ -82,7 +82,7 @@
     </el-dialog>
 
     <!-- 结果 -->
-    <el-dialog title="提示" :visible.sync="resultVisible" width="30%">
+    <el-dialog title="规划结果" :visible.sync="resultVisible" width="30%">
       <div>
         <p>推荐路线:</p>
         <el-tag
@@ -93,7 +93,7 @@
           <i class="el-icon-right" v-if="index < path.length - 1"></i>
         </el-tag>
         <p>预计耗时:</p>
-        <span>{{ weight }}分钟</span>
+        <span>{{ weight }}{{unit}}</span>
       </div>
       <span slot="footer" class="dialog-footer">
         <el-button @click="resultVisible = false">取 消</el-button>
@@ -111,8 +111,8 @@ import CommonHeader from "../src/components/commonHeader.vue";
 import TimeSetter from "../src/components/timeSetter.vue";
 import { cycleMatrix } from "@/assets/map/cycle";
 import { walkMatrix } from "@/assets/map/walk";
+import { minDistanceMatrix } from "@/assets/map/minDistance";
 import { storelog2 } from "../src/store/log.js";
-
 
 export default {
   name: "NavigationPage",
@@ -130,15 +130,16 @@ export default {
       markerLayer: "",
       dialogVisible: false,
       resultVisible: false,
+      unit:null,
       formData: {
-        tripMode: ["步行", "骑车"],
+        tripMode: ["步行", "骑车", "最短距离"],
         currentMode: "",
         original: "",
         destination: "",
       },
       rules: {
         currentMode: [
-          { required: true, message: "请选择出行方式", trigger: "change" },
+          { required: true, message: "请选择计算方式", trigger: "change" },
         ],
         original: [
           { required: true, message: "请填写起始地", trigger: "change" },
@@ -402,7 +403,7 @@ export default {
         "南门",
       ],
       path: [],
-      weigth: "",
+      weigth: null,
     };
   },
   created() {
@@ -834,7 +835,6 @@ export default {
     //计算
     createGraph(vertex, matrix) {
       const size = vertex.length;
-
       const pathTable = [];
       const weightTable = [];
 
@@ -889,7 +889,7 @@ export default {
     },
     //查询
     searchPlace() {
-      storelog2(this.formData.destination)
+      storelog2(this.formData.destination);
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           console.log("提交");
@@ -897,12 +897,21 @@ export default {
           if (this.formData.currentMode === "骑车") {
             console.log(this.formData.original, this.formData.destination);
             const { getPath } = this.createGraph(this.site, cycleMatrix);
+            this.unit = "分钟"
+            this.path = getPath(
+              this.formData.original,
+              this.formData.destination
+            );
+          } else if (this.formData.currentMode === "步行") {
+            const { getPath } = this.createGraph(this.site, walkMatrix);
+            this.unit = "分钟"
             this.path = getPath(
               this.formData.original,
               this.formData.destination
             );
           } else {
-            const { getPath } = this.createGraph(this.site, walkMatrix);
+            const { getPath } = this.createGraph(this.site, minDistanceMatrix);
+            this.unit = "米"
             this.path = getPath(
               this.formData.original,
               this.formData.destination
@@ -913,13 +922,12 @@ export default {
           this.path = path;
           this.weight = weight;
           this.$refs.formRef.resetFields();
-          
+          //显示结果
+          this.dialogVisible = false;
         } else {
           return false;
         }
       });
-      //显示结果
-      this.dialogVisible = false;
     },
   },
 };
