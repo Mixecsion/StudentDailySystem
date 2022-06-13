@@ -12,9 +12,9 @@
             "DateIndex":1,
             "ClassIndex":1,
             "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "ddl":"2022-6-23",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
+            "examtime":"2022-6-24",
             "examlocation":"N511"
         },
         {
@@ -28,11 +28,11 @@
             "location": "N307",
             "DateIndex":1,
             "ClassIndex":3,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "homework":"毛概选择题",
+            "ddl":"2022-6-22",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examtime":"2022-6-25",
+            "examlocation":"N503"
         },
         {
             "name": "计算机组成原理",
@@ -45,11 +45,11 @@
             "location": "N511",
             "DateIndex":1,
             "ClassIndex":6,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "homework":"第六章作业10",
+            "ddl":"2022-6-21",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examtime":"2022-6-26",
+            "examlocation":"S207"
         },
         {
             "name": "计算机网络",
@@ -62,11 +62,11 @@
             "location": "S215",
             "DateIndex":2,
             "ClassIndex":3,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "homework":"第二次实验",
+            "ddl":"2022-6-23",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examtime":"2022-6-23",
+            "examlocation":"S108"
         },
         {
             "name": "面向对象程序设计实践",
@@ -79,7 +79,7 @@
             "location": "N207",
             "DateIndex":2,
             "ClassIndex":6,
-            "homework":"第四章第10题",
+            "homework":"oj第三次作业",
             "ddl":"2022-6-25",
             "exam":"线下考试",
             "examtime":"2022-6-29",
@@ -96,11 +96,11 @@
             "location": "N206",
             "DateIndex":3,
             "ClassIndex":1,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
-            "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "homework":"周报",
+            "ddl":"2022-6-27",
+            "exam":"线上验收",
+            "examtime":"2022-6-25",
+            "examlocation":"腾讯会议"
         },
         {
             "name": "毛泽东思想和中国特色社会主义理论体系概论",
@@ -113,11 +113,11 @@
             "location": "N309",
             "DateIndex":3,
             "ClassIndex":3,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "homework":"实践作业",
+            "ddl":"2022-6-26",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examtime":"2022-6-25",
+            "examlocation":"N503"
         },
         {
             "name": "计算机网络",
@@ -130,11 +130,11 @@
             "location": "S215",
             "DateIndex":4,
             "ClassIndex":3,
-            "homework":"第四章第10题",
+            "homework":"第四章第23题",
             "ddl":"2022-6-25",
             "exam":"线下考试",
-            "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examtime":"2022-6-23",
+            "examlocation":"S108"
         },
         {
             "name": "体育基础（下）",
@@ -147,11 +147,11 @@
             "location": "体育场",
             "DateIndex":4,
             "ClassIndex":6,
-            "homework":"第四章第10题",
+            "homework":"跳绳",
             "ddl":"2022-6-25",
             "exam":"线下考试",
             "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examlocation":"操场"
         },
         {
             "name": "形势与政策",
@@ -164,11 +164,11 @@
             "location": "N307",
             "DateIndex":5,
             "ClassIndex":6,
-            "homework":"第四章第10题",
-            "ddl":"2022-6-25",
+            "homework":"期末论文",
+            "ddl":"2022-6-27",
             "exam":"线下考试",
             "examtime":"2022-6-29",
-            "examlocation":"N511"
+            "examlocation":"N402"
         }
     ],
     "schedule": [
