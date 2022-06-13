@@ -54,7 +54,6 @@
                     <el-date-picker v-model="value" align="right" value-format="yyyy-MM-dd" type="date"  placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
                 </div>
                 <div class="block" >
-                    <p>{{value}}</p>
                     <el-timeline>
                         <el-timeline-item 
                         v-for="(schedule, i) in chooseDate()" :key="i" :timestamp="chooseDate()[i][2]" placement="top">
@@ -129,6 +128,7 @@ export default{
             return arr;
         },
         checkClass(){
+            
             return 1;
         },
         checkSchedule(){
@@ -145,7 +145,6 @@ export default{
                         "end":this.form.end,
                         "repeat":this.form.repeat
                         };
-            this.$set(this.schedules, '0' ,item)
             console.log(item);
             this.$notify({
                 title: '添加成功',

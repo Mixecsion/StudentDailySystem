@@ -82,6 +82,12 @@
                   @click="onClick1(search.content2)"
                   >交作业</el-button
                 >
+                <el-button
+                  type="success"
+                  round
+                  @click="onClick2" 
+                  >查看作业列表</el-button
+                >
               </div>
             </el-card>
           </el-col>
@@ -89,9 +95,9 @@
             <el-card shadow="hover">
               <div class="userinfo">
                 <p>当前日程：</p>
-                <p>大班班会</p>
-                <p>时间：13：00</p>
-                <p>地点：学活301</p>
+                <p>{{this.scheremind().name}}</p>
+                <p>{{this.scheremind().content}}</p>
+                <p>{{"时间："+this.scheremind().time}}</p>
                 <el-divider></el-divider>
               </div>
             </el-card>
@@ -180,13 +186,35 @@ export default {
       }
       return {
         name: "-",
-        begin: "-",
+        start: "-",
         location: "-",
       };
+    },
+    scheremind() {
+      var flag = 0;
+        var day = new Date(Date.parse(year + "-" + month + "-" + date));
+        for (var i = 0; i < ClassBox.schedule.length; i++) {
+          if (day < new Date(Date.parse(ClassBox.schedule[i].date))) {
+            if(hour < ClassBox.schedule[i].starttimehour){
+              if (flag == 0) {
+              flag = 1;
+              return ClassBox.schedule[i];
+              }
+            }
+          }
+        }
+        return {
+          name: "-",
+          content: "-",
+          time: "-",
+        };
     },
     toNavigation() {
       this.$router.push({ path: "/navigation", query: { isVisible: true } });
     },
+    onClick2(){
+        this.$router.push('/homework')
+    }
   },
 };
 </script>

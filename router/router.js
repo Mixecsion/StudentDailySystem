@@ -43,6 +43,11 @@ const routes= [
         path:'/setting/addnew',
         name:'addnew',
         component:()=>import('../views/Addnew.vue')
+    },
+    {
+        path:'/homework',
+        name:'homework',
+        component:()=>import('../views/Homework.vue')
     }
 ]
 
