@@ -13,7 +13,7 @@
                   <el-button icon="el-icon-caret-right" circle @click="forwardTime()"></el-button>
                   <h2>-</h2>
                   <h2>日志</h2>
-                  <p>{{this.logcontent()}}</p>
+                  <p>{{log1}}</p>
                 </el-col>
               </el-row>
             </div>
@@ -33,6 +33,7 @@ import { pause } from "../serve/time.js";
 import { start } from "../serve/time.js";
 import { forward } from "../serve/time.js";
 import { back } from "../serve/time.js";
+
 
 export default{
     name:"TimeSetter",

@@ -12,7 +12,7 @@ Vue.config.productionTip = false
 Vue.use(ElementUI)
 Vue.use(start)
 Vue.use(timer)
-
+localStorage.clear()
 
 new Vue({
   router,

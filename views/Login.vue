@@ -3,7 +3,6 @@
     <el-form
       :model="form"
       status-icon
-      :rules="rules"
       ref="form"
       label-width="100px"
       class="login-container"
@@ -39,8 +38,7 @@
         <el-button
           type="primary"
           class="login-submit"
-          @click="this.$router.push({ name: 'HomePage' })"
-          index="/"
+          @click="login()"
           >登录</el-button
         >
       </el-form-item>
@@ -52,7 +50,10 @@ export default {
   name: "LoginPage",
   data() {
     return {
-      form: {},
+      form: {
+        username:'',
+        password:''
+      },
       rules: {
         username: [
           {
@@ -76,7 +77,13 @@ export default {
       },
     };
   },
-  methods: {},
+  methods: {
+      login(){
+          if((this.form.username=='2020211211')&&(this.form.password=='12345678')){
+            this.$router.push('/')
+          }
+      }
+  },
 };
 </script>
 

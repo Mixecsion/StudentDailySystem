@@ -12,7 +12,10 @@
             "DateIndex":1,
             "ClassIndex":1,
             "homework":"第四章第10题",
-            "ddl":"2022-6-25"
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "毛泽东思想和中国特色社会主义理论体系概论",
@@ -26,7 +29,10 @@
             "DateIndex":1,
             "ClassIndex":3,
             "homework":"第四章第10题",
-            "ddl":"2022-6-25"
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "计算机组成原理",
@@ -40,7 +46,10 @@
             "DateIndex":1,
             "ClassIndex":6,
             "homework":"第四章第10题",
-            "ddl":"2022-5-20"
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "计算机网络",
@@ -52,7 +61,12 @@
             "teacher": "蒋砚军",
             "location": "S215",
             "DateIndex":2,
-            "ClassIndex":3
+            "ClassIndex":3,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "面向对象程序设计实践",
@@ -64,7 +78,12 @@
             "teacher": "吴起凡",
             "location": "N207",
             "DateIndex":2,
-            "ClassIndex":6
+            "ClassIndex":6,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "数据结构课程设计",
@@ -76,7 +95,12 @@
             "teacher": "杨俊",
             "location": "N206",
             "DateIndex":3,
-            "ClassIndex":1
+            "ClassIndex":1,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "毛泽东思想和中国特色社会主义理论体系概论",
@@ -88,7 +112,12 @@
             "teacher": "宋林泽",
             "location": "N309",
             "DateIndex":3,
-            "ClassIndex":3
+            "ClassIndex":3,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "计算机网络",
@@ -100,7 +129,12 @@
             "teacher": "蒋砚军",
             "location": "S215",
             "DateIndex":4,
-            "ClassIndex":3
+            "ClassIndex":3,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "体育基础（下）",
@@ -112,7 +146,12 @@
             "teacher": "吴迪",
             "location": "体育场",
             "DateIndex":4,
-            "ClassIndex":6
+            "ClassIndex":6,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         },
         {
             "name": "形势与政策",
@@ -124,7 +163,12 @@
             "teacher": "马院02",
             "location": "N307",
             "DateIndex":5,
-            "ClassIndex":6
+            "ClassIndex":6,
+            "homework":"第四章第10题",
+            "ddl":"2022-6-25",
+            "exam":"线下考试",
+            "examtime":"2022-6-29",
+            "examlocation":"N511"
         }
     ],
     "schedule": [

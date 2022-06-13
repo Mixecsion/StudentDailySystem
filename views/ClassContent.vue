@@ -29,8 +29,9 @@
                 <p class="college">{{ "上课日期: " + searchweekdate() }}</p>
                 <p class="college">{{ "上课时间: " + searchtime() }}</p>
                 <p class="college">{{ "上课地点: " + searchloca() }}</p>
-                <p class="college">班级: 2020211301</p>
-                <p class="college">班级: 2020211301</p>
+                <p class="college">{{ "考试内容: " + searchexam() }}</p>
+                <p class="college">{{ "考试时间: " + searchexamtime() }}</p>
+                <p class="college">{{ "考试地点: " + searchexamlo() }}</p>
                 <el-divider></el-divider>
               </div>
             </el-card>
@@ -40,7 +41,7 @@
           <el-col :span="24">
             <el-card shadow="hover">
               <el-upload
-                class="upload-demo"
+                class="upload"
                 action="https://jsonplaceholder.typicode.com/posts/"
                 :on-preview="handlePreview"
                 :on-remove="handleRemove"
@@ -51,12 +52,12 @@
                 :file-list="fileList"
               >
                 <h3>提交作业</h3>
-                <p>{{ "当期作业内容：" }}</p>
-                <el-button size="small" type="primary" style="margin-top: 20px"
-                  >点击上传</el-button
-                >
+                <p>{{ "当期作业内容：" +searchwork()}}</p>
+                <p>{{ "截止时间：" +searchddl()}}</p>
                 <div slot="tip" class="el-upload__tip">快点给我交作业</div>
               </el-upload>
+              <el-button size="small" type="primary" style="margin-top: 20px" @click="submit(fileList)">打包查重</el-button>
+              <el-button size="small" type="primary" style="margin-top: 20px" @click="sub">提交</el-button>
             </el-card>
           </el-col>
         </el-row>
@@ -65,6 +66,7 @@
   </el-container>
 </template>
 
+<script type="text/javascript" src="./jszip.min.js"></script>
 <script>
 import CommonAside from "../src/components/commonAside.vue";
 import CommonHeader from "../src/components/commonHeader.vue";
@@ -97,6 +99,7 @@ export default {
       console.log(file, fileList);
     },
     handlePreview(file) {
+      
       console.log(file);
     },
     handleExceed(files, fileList) {
@@ -108,6 +111,43 @@ export default {
     },
     beforeRemove(file) {
       return this.$confirm(`确定移除 ${file.name}?`);
+    },
+    submit(){
+      var zip = new JSZip()
+      this.check(this.fileList);
+      zip.generateAsync({
+          type: 'blob',// 压缩类型
+          compression: "DEFLATE", // STORE：默认不压缩 DEFLATE：需要压缩
+          compressionOptions: {
+              level: 9 // 压缩等级1~9 1压缩速度最快，9最优压缩方式
+          }
+      }).then(function(file) {
+          // 下载的文件名
+          var filename = 'work.zip';
+          // 创建隐藏的可下载链接
+          var eleLink = document.createElement('a');
+          eleLink.download = filename;
+          eleLink.style.display = 'none';
+          // 下载内容转变成blob地址
+          eleLink.href = URL.createObjectURL(content);
+          // 触发点击
+          document.body.appendChild(eleLink);
+          eleLink.click();
+          // 然后移除
+          document.body.removeChild(eleLink);
+      });
+    },
+    check(fileList){
+        for(let i = 0; i < fileList.length - 1; i += 1) {
+          for(let j = 0; j < fileList.length; j += 1) {
+            if(fileList[i].name === fileList[j].name) {
+              this.$alert("您提交的文档中存在重复文档，请检查", "警告");
+            }
+          }
+        }
+    },
+    sub(){
+      this.$alert("您提交的作业已经成功压缩打包提交", "提示");
     },
     searchteacher() {
       var name = this.getname();
@@ -141,6 +181,46 @@ export default {
         return -1;
       }
     },
+    searchwork() {
+      var name = this.getname();
+      if (searchclass(name) != -1) {
+        return searchclass(name).homework;
+      } else {
+        return -1;
+      }
+    },
+    searchddl() {
+      var name = this.getname();
+      if (searchclass(name) != -1) {
+        return searchclass(name).ddl;
+      } else {
+        return -1;
+      }
+    },
+    searchexam() {
+      var name = this.getname();
+      if (searchclass(name) != -1) {
+        return searchclass(name).exam;
+      } else {
+        return -1;
+      }
+    },
+    searchexamtime() {
+      var name = this.getname();
+      if (searchclass(name) != -1) {
+        return searchclass(name).examtime;
+      } else {
+        return -1;
+      }
+    },
+    searchexamlo() {
+      var name = this.getname();
+      if (searchclass(name) != -1) {
+        return searchclass(name).examlocation;
+      } else {
+        return -1;
+      }
+    }
   },
 };
 </script>

@@ -13,12 +13,6 @@
         <body>
           <el-row type="flex" class="row-bg">
             <div id="searchPart" style="z-index: 3">
-              <el-col :span="16"
-                ><el-input v-model="input" placeholder="请输入地点"></el-input
-              ></el-col>
-              <el-col :span="4"
-                ><el-button icon="el-icon-search" circle></el-button
-              ></el-col>
               <el-col :span="4"
                 ><el-button round type="primary" @click="dialogVisible = true"
                   >导航</el-button
@@ -117,6 +111,9 @@ import CommonHeader from "../src/components/commonHeader.vue";
 import TimeSetter from "../src/components/timeSetter.vue";
 import { cycleMatrix } from "@/assets/map/cycle";
 import { walkMatrix } from "@/assets/map/walk";
+import { storelog2 } from "../src/store/log.js";
+
+
 export default {
   name: "NavigationPage",
   components: {
@@ -892,6 +889,7 @@ export default {
     },
     //查询
     searchPlace() {
+      storelog2(this.formData.destination)
       this.$refs.formRef.validate((valid) => {
         if (valid) {
           console.log("提交");
@@ -915,12 +913,12 @@ export default {
           this.path = path;
           this.weight = weight;
           this.$refs.formRef.resetFields();
+          
         } else {
           return false;
         }
       });
       //显示结果
-
       this.dialogVisible = false;
     },
   },
