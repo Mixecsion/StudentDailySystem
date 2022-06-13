@@ -132,7 +132,7 @@ export default {
       resultVisible: false,
       unit:null,
       formData: {
-        tripMode: ["步行", "骑车", "最短距离"],
+        tripMode: ["步行最短时间", "骑车最短时间", "最短距离"],
         currentMode: "",
         original: "",
         destination: "",
@@ -894,7 +894,7 @@ export default {
         if (valid) {
           console.log("提交");
           console.log(this.formData.currentMode);
-          if (this.formData.currentMode === "骑车") {
+          if (this.formData.currentMode === "骑车最短时间") {
             console.log(this.formData.original, this.formData.destination);
             const { getPath } = this.createGraph(this.site, cycleMatrix);
             this.unit = "分钟"
@@ -902,7 +902,7 @@ export default {
               this.formData.original,
               this.formData.destination
             );
-          } else if (this.formData.currentMode === "步行") {
+          } else if (this.formData.currentMode === "步行最短时间") {
             const { getPath } = this.createGraph(this.site, walkMatrix);
             this.unit = "分钟"
             this.path = getPath(

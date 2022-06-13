@@ -121,6 +121,7 @@ import { month } from "../src/serve/time.js";
 import { year } from "../src/serve/time.js";
 import { week } from "../src/serve/time.js";
 import { storelog1 } from "../src/store/log.js";
+import { storelog4 } from "../src/store/log.js";
 
 export default {
   name: "HomePage",
@@ -214,6 +215,7 @@ export default {
     },
     onClick2(){
         this.$router.push('/homework')
+        storelog4()
     }
   },
 };
