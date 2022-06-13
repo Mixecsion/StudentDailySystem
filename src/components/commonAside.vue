@@ -32,7 +32,7 @@
       <i class="el-icon-location"></i>
       <span slot="title">校园导航</span>
     </el-menu-item>
-    <el-menu-item @click="navigation('/setting')" index="/setting">
+    <el-menu-item @click="navigation('/admin')" index="/admin">
       <i class="el-icon-user-solid"></i>
       <span slot="title">管理员</span>
     </el-menu-item>
@@ -96,10 +96,10 @@ export default {
         },
         {
           path: "/",
-          name: "setting",
-          label: "设置",
-          icon: "setting",
-          url: "Setting/Setting",
+          name: "admin",
+          label: "管理员",
+          icon: "admin",
+          url: "Admin/Admin",
         },
       ],
     };

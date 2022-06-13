@@ -25,9 +25,9 @@ const routes= [
         component:()=>import('../views/Navigation.vue')
     },
     {
-        path:'/setting',
-        name:'setting',
-        component:()=>import('../views/Setting.vue')
+        path:'/admin',
+        name:'admin',
+        component:()=>import('../views/Admin.vue')
     },
     {
         path:'/login',
