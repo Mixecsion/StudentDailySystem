@@ -61,6 +61,14 @@
             </el-card>
           </el-col>
         </el-row>
+        <el-row style="margin-top: 20px">
+          <el-col :span="24">
+            <el-card shadow="hover">
+                <h4>资料下载</h4>
+                <el-button size="small" type="primary" style="margin-top: 20px" @click="download">下载</el-button>
+            </el-card>
+          </el-col>
+        </el-row>
       </el-main>
     </el-container>
   </el-container>
@@ -220,6 +228,9 @@ export default {
       } else {
         return -1;
       }
+    },
+    download(){
+      this.$alert("已经开始下载，请在浏览器下载页查询", "提示");
     }
   },
 };
