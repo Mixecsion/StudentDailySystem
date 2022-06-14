@@ -72,6 +72,23 @@
           <el-col :span="6">
             <el-card shadow="hover">
               <div class="userinfo">
+                <p>当前考试：</p>
+                <p>{{ this.examremind().name }}</p>
+                <p>考试内容：{{ this.examremind().exam }}</p>
+                <p>考试时间：{{ this.examremind().examtime }}</p>
+                <el-row>
+                  <el-button
+                    type="success"
+                    round
+                    @click="onClick1(search.content1)"
+                    >详细信息</el-button
+                  ></el-row>
+              </div>
+            </el-card>
+          </el-col>
+          <el-col :span="6">
+            <el-card shadow="hover">
+              <div class="userinfo">
                 <p>未交作业：</p>
                 <p>{{ this.homeworkremind().name }}</p>
                 <p>{{ this.homeworkremind().homework }}</p>
@@ -201,6 +218,24 @@ export default {
               flag = 1;
               return ClassBox.schedule[i];
               }
+            }
+          }
+        }
+        return {
+          name: "-",
+          content: "-",
+          time: "-",
+        };
+    },
+    examremind() {
+      var flag = 0;
+        var day = new Date(Date.parse(year + "-" + month + "-" + date));
+        for (var i = 0; i < ClassBox.class.length; i++) {
+          if (day < new Date(Date.parse(ClassBox.class[i].examtime))) {
+              if (flag == 0) {
+              flag = 1;
+              return ClassBox.class[i];
+              
             }
           }
         }
