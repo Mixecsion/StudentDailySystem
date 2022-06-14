@@ -211,7 +211,7 @@ export default {
         };
     },
     toNavigation() {
-      this.$router.push({ path: "/navigation", query: { isVisible: true } });
+      this.$router.push({ path: "/navigation", query: { isVisible: true} });
     },
     onClick2(){
         this.$router.push('/homework')

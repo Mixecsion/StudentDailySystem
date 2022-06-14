@@ -51,10 +51,10 @@
                 </el-dialog>
                 <div class="tool">
                     <el-button class="add" type="primary" icon="el-icon-plus" circle  @click="dialogFormVisible=true"></el-button>
-                    <el-date-picker v-model="value" align="right" value-format="yyyy-MM-dd" type="date"  placeholder="选择日期" :picker-options="pickerOptions"></el-date-picker>
+                    <el-date-picker v-model="value" align="right" value-format="yyyy-MM-dd" type="date"  placeholder="选择日期" :picker-options="pickerOptions" @on-change="chooseDate"></el-date-picker>
                 </div>
-                <div class="block" >
-                    <el-timeline>
+                <div class="block" v-if="value">
+                    <el-timeline >
                         <el-timeline-item 
                         v-for="(schedule, i) in chooseDate()" :key="i" :timestamp="chooseDate()[i][2]" placement="top">
                         <el-card>
@@ -126,6 +126,7 @@ export default{
                     j++;
                 }
             }
+            console.log(this.value)
             return arr;
         },
         checkClass(){

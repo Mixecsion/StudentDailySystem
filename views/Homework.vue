@@ -17,7 +17,7 @@
             ></el-page-header>
           </el-col>
         </el-row>
-        <div class="block">
+        <div class="block" style="margin-top: 20px">
           <el-form
               :model="queryParams"
               ref="queryForm"
@@ -26,7 +26,7 @@
               label-width="68px"
           >
             <el-form-item label="排序方式" prop="dictType">
-              <el-select v-model="queryParams.sortType">
+              <el-select v-model="queryParams.sortType" @on-change="getData">
                 <el-option
                     v-for="dict in dict.types"
                     :key="dict.value"
@@ -48,7 +48,7 @@
               >
             </el-form-item>
           </el-form>
-          <el-table v-loading="loading" :data="dataList">
+          <el-table v-loading="loading" :data="dataList" >
             <el-table-column label="课程名称" align="center" prop="name" />
             <el-table-column label="作业" align="center" prop="homework" />
             <el-table-column label="截止日期" align="center" prop="ddl" />
@@ -104,6 +104,7 @@ export default {
     },
     getData() {
       this.loading = true
+      this.$forceUpdate
       console.log(ClassBox);
       this.dataList = this.selectSort(ClassBox.class);
       this.loading = false;
