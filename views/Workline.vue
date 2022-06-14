@@ -96,7 +96,7 @@ export default{
                     }
                 }]
             },
-            value: '2022-6-21',
+            value: '2022-06-21',
             dialogFormVisible: false,
             form: {
                 name: '',

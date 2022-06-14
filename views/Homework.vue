@@ -26,12 +26,13 @@
               label-width="68px"
           >
             <el-form-item label="排序方式" prop="dictType">
-              <el-select v-model="queryParams.sortType" @on-change="getData">
+              <el-select v-model="queryParams.sortType" >
                 <el-option
                     v-for="dict in dict.types"
                     :key="dict.value"
                     :label="dict.label"
                     :value="dict.value"
+                    @on-change="getData"
                 />
               </el-select>
             </el-form-item>
@@ -82,13 +83,17 @@ export default {
       dict: {
         types: [
           {
+            value: "name",
+            label: "课程名称",
+          },
+          {
             value: "ddl",
             label: "截止日期",
           },
           {
             value: "examtime",
             label: "考试时间",
-          },
+          }
         ],
       },
       dataList: [],
@@ -104,12 +109,20 @@ export default {
     },
     getData() {
       this.loading = true
-      this.$forceUpdate
-      console.log(ClassBox);
-      this.dataList = this.selectSort(ClassBox.class);
+      if(this.queryParams.sortType=="name"){
+        this.dataList = ClassBox.class;
+      }
+      else if(this.queryParams.sortType=="ddl"){
+        this.dataList = this.selectSortTime(ClassBox.class);
+   
+      }
+      else if(this.queryParams.sortType=="examtime"){
+        this.dataList = this.selectSortExam(ClassBox.class);
+      }
+      console.log(this.dataList)
       this.loading = false;
     },
-    selectSort(arr) {
+    selectSortTime(arr) {
       var len = arr.length;
       var minIndex, temp;
       for (let i = 0; i < len - 1; i++) {
@@ -128,14 +141,35 @@ export default {
       }
       return arr;
     },
+    selectSortExam(arr) {
+      var len = arr.length;
+      var minIndex, temp;
+      for (let i = 0; i < len - 1; i++) {
+        minIndex = i;
+        for (let j = i + 1; j < len; j++) {
+
+          if (
+              this.getTimeStamp(arr[j][this.queryParams.sortType || "examtime"]) <
+              this.getTimeStamp(arr[minIndex][this.queryParams.sortType || "examtime"])
+          )
+            minIndex = j;
+        }
+        temp = arr[i];
+        arr[i] = arr[minIndex];
+        arr[minIndex] = temp;
+      }
+      return arr;
+    },
     getTimeStamp(time) {
       return new Date(time).getTime();
     },
     handleQuery(){
       this.getData()
+      this.$forceUpdate
     },
     resetQuery(){
       this.queryParams.sortType = ''
+    
     }
   },
 };
