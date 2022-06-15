@@ -140,7 +140,9 @@ export default{
             else if (week == 0) week = "Sun";
                 for (var i = 0; i < ClassBox.class.length; i++) {
                     if (week == ClassBox.class[i].date) {
-                        return 1;
+                        if((this.form.start < new Date(Date.parse(ClassBox.schedule[i].end)))&&(this.form.start > new Date(Date.parse(ClassBox.class[i].start)))){
+                            return 1;
+                        }
                     }
                 }
             return 0;
