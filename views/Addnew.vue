@@ -229,7 +229,7 @@ export default{
     },
     onClick1(name) {
       if (searchclass(name) != -1) {
-        this.$router.push({ name: "classcontent", params: { name: name } });
+        this.$alert("查询成功，请继续您的操作", "搜索成功");
       } else {
         this.$alert("您搜索的课程不在课表内，请重新搜索", "搜索失败");
       }

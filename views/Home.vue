@@ -80,7 +80,7 @@
                   <el-button
                     type="success"
                     round
-                    @click="onClick1(search.content1)"
+                    @click="onClick3(search.content3)"
                     >详细信息</el-button
                   ></el-row>
               </div>
@@ -155,6 +155,7 @@ export default {
         content: "",
         content1: this.classremind().name,
         content2: this.homeworkremind().name,
+        content3: this.examremind().name
       },
       minute,
       date,
@@ -250,6 +251,10 @@ export default {
     },
     onClick2(){
         this.$router.push('/homework')
+        storelog4()
+    },
+    onClick3(name){
+        this.$router.push({ name: "classcontent", params: { name: name } });
         storelog4()
     }
   },
